@@ -9,6 +9,6 @@ I also put a pdf of the slides in the git repo.
 
 I'll also post the youtube video link of the class here once it's uploaded.
 
-Licenses are whatever the library files say in their headers, or creative commons 4.0 Attribution-ShareAlike 4.0, whichever is less restrictive.
+Licenses are whatever the library files say in their headers, or creative commons 4.0 Attribution-ShareAlike 4.0, whichever makes sense.
 
 <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
