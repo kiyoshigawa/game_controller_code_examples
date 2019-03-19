@@ -50,10 +50,6 @@ void setup(){
     Serial.println("Encoder Test:");
   #endif
 
-  //set encoder pins to inputs:
-  pinMode(encoder_pin_a, INPUT);
-  pinMode(encoder_pin_b, INPUT);
-
   //disable other joystick functions
   Joystick.X(512);
   Joystick.Y(512);
@@ -67,33 +63,6 @@ void setup(){
 void loop(){
     update_encoders();
     encoder_key_press();
-}
-
-//this will use the timing from the update_encoders() function to determine if the joystick should be pressed up, down, or not at all. Note that the joystick mapped buttons for up and down will be NUM_BUTTONS + 1, 2, 3, or 4, as the first NUM_BUTTONS buttons will be used by the keys, start, and select buttons.
-void encoder_key_press(){
-  if(encoder_direction == POSITIVE){
-    //press up button and release down button
-    Joystick.button(1, 1);
-    Joystick.button(2, 0);
-  }
-  else if(encoder_direction == NEGATIVE){
-    //press down button and release up button
-    Joystick.button(1, 0);
-    Joystick.button(2, 1);
-  }
-  else if(encoder_direction == STOPPED){
-    //release both up and down buttons
-    Joystick.button(1, 0);
-    Joystick.button(2, 0);
-    if(encoder_has_stopped == false){
-      encoder_position = knob.read();
-      #ifdef ENCODER_DEBUG
-        Serial.print("Stopped at: ");
-      #endif
-      print_encoder_position();
-      encoder_has_stopped = true;
-    }
-  }
 }
 
 //this will update the time variables showing when the encoders last changed position.
@@ -128,7 +97,33 @@ void update_encoders(){
     knob.write(0);
     encoder_position = 0;
   }
+}
 
+//this will use the timing from the update_encoders() function to determine if the joystick should be pressed up, down, or not at all. Note that the joystick mapped buttons for up and down will be NUM_BUTTONS + 1, 2, 3, or 4, as the first NUM_BUTTONS buttons will be used by the keys, start, and select buttons.
+void encoder_key_press(){
+  if(encoder_direction == POSITIVE){
+    //press up button and release down button
+    Joystick.button(1, 1);
+    Joystick.button(2, 0);
+  }
+  else if(encoder_direction == NEGATIVE){
+    //press down button and release up button
+    Joystick.button(1, 0);
+    Joystick.button(2, 1);
+  }
+  else if(encoder_direction == STOPPED){
+    //release both up and down buttons
+    Joystick.button(1, 0);
+    Joystick.button(2, 0);
+    if(encoder_has_stopped == false){
+      encoder_position = knob.read();
+      #ifdef ENCODER_DEBUG
+        Serial.print("Stopped at: ");
+      #endif
+      print_encoder_position();
+      encoder_has_stopped = true;
+    }
+  }
 }
 
 void print_encoder_position(){
